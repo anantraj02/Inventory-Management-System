@@ -5,17 +5,20 @@ let mongoServer;
 const connectDB = async () => {
   const isProduction = process.env.NODE_ENV === 'production';
   const mongoUri = process.env.MONGO_URI;
+  if (isProduction && !mongoUri) {
+  throw new Error("MONGO_URI environment variable is missing.");
+}
 
   // If MONGO_URI is explicitly provided or we are in production, connect directly
-  if (mongoUri || isProduction) {
-    const uri = mongoUri || 'mongodb://127.0.0.1:27017/inventory_db';
-    console.log(`Connecting to persistent database...`);
-    await mongoose.connect(uri, {
-      serverSelectionTimeoutMS: 10000 // 10 seconds timeout for production/cloud
-    });
-    console.log(`MongoDB Connected: ${mongoose.connection.host}`);
-    return;
-  }
+if (mongoUri) {
+  console.log("Connecting to MongoDB Atlas...");
+  await mongoose.connect(mongoUri, {
+    serverSelectionTimeoutMS: 10000
+  });
+
+  console.log(`MongoDB Connected: ${mongoose.connection.host}`);
+  return;
+}
 
   // Otherwise, fallback to local/in-memory server for development
   try {

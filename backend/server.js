@@ -80,8 +80,10 @@ const PORT = process.env.PORT || 5000;
 
 // Connect to MongoDB, Auto Seed, and start listening
 connectDB().then(async () => {
-  const seedDatabase = require('./utils/seeder');
-  await seedDatabase();
+  if (process.env.NODE_ENV === "development") {
+    const seedDatabase = require("./utils/seeder");
+    await seedDatabase();
+}
 
   const server = app.listen(PORT, () => {
     console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
