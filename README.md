@@ -1,4 +1,4 @@
-# 📦 Inventory Management System - Backend
+# 📦 Inventory Management System
 
 A scalable and secure RESTful API for an Inventory Management System built using the MERN stack. This backend provides authentication, role-based authorization, product and inventory management, vendor management, purchase and sales tracking, and dashboard analytics.
 
