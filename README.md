@@ -165,7 +165,7 @@ The APIs can be tested using:
 
 # 📦 Dependencies
 
-```json
+json
 bcrypt
 cors
 dotenv
@@ -254,7 +254,7 @@ Protected Routes
 
 B.Tech Computer Science Engineering
 
-MERN Stack Developer
+MERN Stack Developers
 
 ---
 
